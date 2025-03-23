@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "מכונת כביסה",
+    "description": "מכונת כביסה של חברת LG, בנפח 9 ק\"ג,\nהטכנולוגיה החדשה ביותר, סל\"ד 1200\nF2WR509SMW :מק\"ט",
+    "productImageUrl": "/images/item/item.png", 
+    "brandImageUrl": "/images/item/item_brand.png",
+    "price": 2099,
+    "marketPrice": 2890,
+    "category": "electronics"
+  }
+] 
