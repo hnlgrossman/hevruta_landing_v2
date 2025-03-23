@@ -1,12 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getItemById, getAllItems } from '@/utils/items';
 
-interface ItemPageProps {
-  params: {
-    id: string;
-  };
-}
-
 export function generateStaticParams() {
   const items = getAllItems();
   
@@ -15,8 +9,14 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ItemPage({ params }: ItemPageProps) {
-  const item = getItemById(Number(params.id));
+export default async function ItemPage({ 
+  params,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { id } = await params;
+  const item = getItemById(Number(id));
   
   if (!item) {
     notFound();
@@ -65,11 +65,11 @@ export default function ItemPage({ params }: ItemPageProps) {
             <div className="product__details">
               <h2 className="product__details-title">תיאור המוצר:</h2>
               <p className="product__details-description">
-                מכונת כביסה של חברת LG, בנפח 9 ק"ג,
+                מכונת כביסה של חברת LG, בנפח 9 ק&quot;ג,
                 <br />
-                הטכנולוגיה החדשה ביותר, סל"ד 1200
+                הטכנולוגיה החדשה ביותר, סל&quot;ד 1200
                 <br />
-                F2WR509SMW :מק"ט
+                F2WR509SMW :מק&quot;ט
                 <br />
                 <span className="product__details-warranty">למפרט מורחב &gt;</span>
               </p>
@@ -389,7 +389,7 @@ export default function ItemPage({ params }: ItemPageProps) {
             <h2 className="title title-dark title-center">
               אם אתם חושבים שיש
               <br />
-              קאץ'
+              קאץ&apos;
               <span className="paragraph__highlight-red paragraph-bold">
                 אז אין.
               </span>
@@ -405,7 +405,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                     />
                   </div>
                   <p className="faq__question">
-                    "מאמי לא יודעת, איך הם משיגים מחירים כאלה?"
+                    &quot;מאמי לא יודעת, איך הם משיגים מחירים כאלה?&quot;
                   </p>
                 </div>
                 <div className="faq__body">
@@ -431,7 +431,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                       className="faq__icon"
                     />
                   </div>
-                  <p className="faq__question">"אבל אני לא רוצה להתחייב"</p>
+                  <p className="faq__question">&quot;אבל אני לא רוצה להתחייב&quot;</p>
                 </div>
                 <div className="faq__body">
                   <p className="faq__answer">
@@ -454,7 +454,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                     />
                   </div>
                   <p className="faq__question">
-                    "חיים שלי אין לי זמן לחכות עד שהקבוצה תהיה מוכנה"
+                    &quot;חיים שלי אין לי זמן לחכות עד שהקבוצה תהיה מוכנה&quot;
                   </p>
                 </div>
                 <div className="faq__body">
@@ -479,7 +479,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                       className="faq__icon"
                     />
                   </div>
-                  <p className="faq__question">"אוף אבל אין כאן את הדגם שחיפשתי"</p>
+                  <p className="faq__question">&quot;אוף אבל אין כאן את הדגם שחיפשתי&quot;</p>
                 </div>
                 <div className="faq__body">
                   <p className="faq__answer">
@@ -500,7 +500,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                       className="faq__icon"
                     />
                   </div>
-                  <p className="faq__question">"רגע מה עם אחריות?"</p>
+                  <p className="faq__question">&quot;רגע מה עם אחריות?&quot;</p>
                 </div>
                 <div className="faq__body">
                   <p className="faq__answer">
@@ -519,7 +519,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                       className="faq__icon"
                     />
                   </div>
-                  <p className="faq__question">"אפשר לפרוס לתשלומים?"</p>
+                  <p className="faq__question">&quot;אפשר לפרוס לתשלומים?&quot;</p>
                 </div>
                 <div className="faq__body">
                   <p className="faq__answer">
@@ -540,7 +540,7 @@ export default function ItemPage({ params }: ItemPageProps) {
                     />
                   </div>
                   <p className="faq__question">
-                    "אבל עשו לנו דיל לכמה מוצרים יחד ברשת אחרת"
+                    &quot;אבל עשו לנו דיל לכמה מוצרים יחד ברשת אחרת&quot;
                   </p>
                 </div>
                 <div className="faq__body">
