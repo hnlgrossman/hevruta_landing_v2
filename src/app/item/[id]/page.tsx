@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getItemById, getAllItems } from '@/utils/items';
+import CountdownTimer from '@/components/CountdownTimer';
+import ProductDetails from '@/components/ProductDetails';
 
 export function generateStaticParams() {
   const items = getAllItems();
@@ -9,14 +11,14 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function ItemPage({ 
+export default async function ItemPage({
   params,
 }: {
   params: Promise<{ id: string }>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { id } = await params;
-  const item = getItemById(Number(id));
+  const item = getItemById(id);
   
   if (!item) {
     notFound();
@@ -25,7 +27,7 @@ export default async function ItemPage({
   return (
     <div className="landing-page">
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero padding-space">
         <div className="container">
           <h1 className="hero__title">
             <span className="hero__title-main">ברוך הבא לקבוצת</span>
@@ -34,8 +36,7 @@ export default async function ItemPage({
             </span>
           </h1>
           <p className="hero__description">
-          מכונת כביסה של חברת LG במחיר הזול בישראל 
-           <strong> בהתחייבות   </strong> 
+            <div dangerouslySetInnerHTML={{ __html: item.shortTitle }} />
           </p>
           <div className="product">
             <div className="product__image-container">
@@ -62,18 +63,10 @@ export default async function ItemPage({
                 </span>
               </div>
             </div>
-            <div className="product__details">
-              <h2 className="product__details-title">תיאור המוצר:</h2>
-              <p className="product__details-description">
-                מכונת כביסה של חברת LG, בנפח 9 ק&quot;ג,
-                <br />
-                הטכנולוגיה החדשה ביותר, סל&quot;ד 1200
-                <br />
-                F2WR509SMW :מק&quot;ט
-                <br />
-                <span className="product__details-warranty">למפרט מורחב &gt;</span>
-              </p>
-            </div>
+            <ProductDetails 
+              description={item.description}
+              longDescription={item.longDescription}
+            />
             <a href="#" className="cta-button">
               <span className="cta-button__text">
                 לפרטים נוספים
@@ -125,10 +118,10 @@ export default async function ItemPage({
               </div>
             </div>
             <div className="stats__value stats__value--date">
-              <p className="stats__date">22.5.25</p>
+              <p className="stats__date">{new Date(Date.now() + 8 * 60 * 60 * 1000 + 45 * 60 * 1000).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'}).split('/').join('.')}</p>
               <span className="stats__timer">
                 <p className="stats__timer-label">שעות לסיום</p>
-                <p className="stats__timer-value">08:46</p>
+                <CountdownTimer endDate={new Date(Date.now() + 8 * 60 * 60 * 1000 + 45 * 60 * 1000)} />
               </span>
             </div>
           </div>
@@ -192,7 +185,7 @@ export default async function ItemPage({
         </div>
       </section>
       {/* Products Section */}
-      <section className="products">
+      {/* <section className="products">
         <div className="container">
           <h2 className="products__title">מוצרים שאנחנו מוכרים</h2>
           <div className="products__grid">
@@ -213,7 +206,9 @@ export default async function ItemPage({
             לכל המוצרים שלנו לחץ כאן &gt;&gt;&gt;&gt;{" "}
           </a>
         </div>
-      </section>
+      </section> */}
+
+
       {/* Info Section */}
       <section className="info">
         <div className="container no-space">

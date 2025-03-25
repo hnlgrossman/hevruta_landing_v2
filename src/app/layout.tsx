@@ -1,11 +1,12 @@
 // import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "../scss/main.scss";
+import "../scss/home.scss";
 import "../scss/item.scss";
 
 const rubik = Rubik({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "700", "900"],
 });
 
 // export const metadata: Metadata = {
