@@ -11,14 +11,15 @@
     
     &-main {
       display: block;
-      font-size: 1.5rem;
-      font-weight: $font-weight-bold;
+      font-size: $font-size-title;
+      font-weight: $font-weight-black;
       color: $accent-color;
+      line-height: 1;
     }
     
     &-sub {
       display: block;
-      font-size: 2rem;
+      font-size: $font-size-title;
       font-weight: $font-weight-black;
       color: $accent-color;
     }
@@ -26,9 +27,10 @@
   
   &__description {
     text-align: center;
-    font-size: 1rem;
     margin-bottom: $spacing-lg;
     color: $white;
+    font-size: 1.4rem;
+
   }
   
   @include tablet {
@@ -40,12 +42,11 @@
       }
       
       &-sub {
-        font-size: 2.5rem;
+        font-size: $font-size-title;
       }
     }
     
     &__description {
-      font-size: 1.2rem;
     }
   }
   
@@ -54,16 +55,15 @@
     
     &__title {
       &-main {
-        font-size: 2.5rem;
+        font-size: $font-size-title;
       }
       
       &-sub {
-        font-size: 3rem;
+        font-size:  $font-size-title;
       }
     }
     
     &__description {
-      font-size: 1.4rem;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
@@ -148,6 +148,10 @@
   
   &__price-tag {
     background-color: $accent-color;
+    background-image: url('/images/globle/btn_bg.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 100% 64%;
     color: $primary-color;
     padding: $spacing-sm $spacing-md;
     border-radius: $spacing-sm;
@@ -155,16 +159,21 @@
     margin-bottom: $spacing-lg;
     width: 100%;
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
   }
   
   &__price-label {
-    font-size: 1rem;
-    font-weight: $font-weight-medium;
+    font-size: 2.0rem;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1;
   }
   
   &__price-current {
     font-size: 2.5rem;
-    font-weight: $font-weight-black;
+    font-weight: 800;
     color: $red-color;
     line-height: 1;
   }
@@ -174,7 +183,37 @@
     flex-direction: column;
     font-size: 0.9rem;
   }
+
+  &__price-skl {
+    font-size: 1rem;
+    font-weight: $font-weight-black;
+    line-height: 1;
+  }
+
+  &__price-savings-amount {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      inset-inline: -7px 4px;
+      height: 15px;
+      background-image: url('/images/globle/under_word.svg');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+      bottom: -6px;
+      top: auto;
+    }
+  }
   
+  &__price-savings {
+    font-size: 1.4rem;
+    font-weight: $font-weight-black;
+    color: #0F334F;
+    line-height: 1;
+  }
+
   &__price-original {
     text-decoration: line-through;
   }
@@ -212,9 +251,7 @@
       cursor: pointer;
       transition: color 0.2s ease;
       
-      &:hover {
-        color: darken($accent-color, 10%);
-      }
+      
     }
   }
 
@@ -554,29 +591,6 @@
   background-color: #7fe7f9;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(30%, -30%);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 100px;
-    height: 100px;
-    border: 15px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-  }
   
   &__title {
     text-align: center;

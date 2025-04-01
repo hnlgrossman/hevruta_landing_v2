@@ -3,6 +3,7 @@ import { Rubik } from "next/font/google";
 import "../scss/main.scss";
 import "../scss/home.scss";
 import "../scss/item.scss";
+import Footer from "../components/Footer";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -21,8 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={rubik.className}>
+      <body className={`${rubik.className}`}>
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 // Base styles
 html {
   font-size: $font-size-base;
@@ -787,7 +791,7 @@ a {
     gap: $spacing-md;
     
     &-icon-container {
-      width: 90px;
+      width: 80px;
       height: auto;
       margin-bottom: $spacing-sm;
     }
@@ -799,11 +803,11 @@ a {
     }
     
     &-text {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: $red-color;
       font-weight: $font-weight-bold;
       text-align: right;
-      line-height: 1.3;
+      line-height: 1.1;
     }
   }
   
@@ -1056,5 +1060,125 @@ a {
   }
   100% {
     opacity: 1;
+  }
+}
+
+// Footer Section
+.footer {
+  background-color: #121212;
+  padding: $spacing-lg 20px;
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    
+    img {
+      width: 150px;
+      height: auto;
+      margin-bottom: $spacing-sm;
+    }
+    
+    &-text {
+      font-size: 1.2rem;
+      font-weight: $font-weight-bold;
+      color: $white;
+    }
+    
+    @include tablet {
+      align-items: flex-start;
+    }
+  }
+  
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  &__link {
+    color: $white;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    
+    &:hover {
+      color: $accent-color;
+    }
+    
+    &-icon {
+      margin-left: $spacing-sm;
+      font-size: 1.2rem;
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+    
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $white;
+      transition: all 0.3s ease;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: $primary-color;
+      }
+      
+      &:hover {
+        transform: translateY(-3px);
+        background-color: $accent-color;
+        
+        svg {
+          fill: $white;
+        }
+      }
+      
+      &.facebook {
+        background-color: #3b5998;
+        
+        svg {
+          fill: $white;
+        }
+      }
+      
+      &.whatsapp {
+        background-color: #25d366;
+        
+        svg {
+          fill: $white;
+        }
+      }
+    }
+  }
+  
+  &__bottom {
+    margin-top: $spacing-lg;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
   }
 } 

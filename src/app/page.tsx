@@ -3,6 +3,7 @@ import { getAllItems } from "@/utils/items";
 
 export default async function Home() {
   const products = getAllItems();
+  const whatsappCtaLink = `https://wa.me/972504428463?text=${encodeURIComponent(`היי חברותא 👋🏼\nאני רוצה להצטרף לקבוצת רכישה למוצרים שלך`)}`;
 
   return (
     <div className="home-page">
@@ -22,17 +23,17 @@ export default async function Home() {
               שוויצרי באמינותו ודיוקו.
             </p>
             <div className="cta-area">
-              <button className="cta-button">
+              <a href="#products" className="cta-button">
                 לצפייה במוצרים
                 <span className="cta-button__icon">→</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section className="products padding-space">
+    <section id="products" className="products padding-space">
       <div className="container">
         <h2 className="title title-center">
           <span className="title-highlight">המוצרים</span> שלנו
@@ -88,67 +89,8 @@ export default async function Home() {
       </div>
     </section>
       
-      {/* Features Section */}
-      {/* <section className="features">
-        <div className="container">
-          <div className="features__grid">
-            <div className="feature">
-              <div className="feature__icon-container">
-                <img
-                  src="/images/globle/payment.png"
-                  alt="תשלום מאובטח"
-                  className="feature__icon"
-                />
-              </div>
-              <div className="feature__text">תשלום מאובטח</div>
-            </div>
-            <div className="feature">
-              <div className="feature__icon-container">
-                <img
-                  src="/images/globle/responsbility.png"
-                  alt="אחריות יצרן מלאה"
-                  className="feature__icon"
-                />
-              </div>
-              <div className="feature__text">אחריות יצרן מלאה</div>
-            </div>
-            <div className="feature">
-              <div className="feature__icon-container">
-                <img
-                  src="/images/globle/supli.png"
-                  alt="התקנה מהירה"
-                  className="feature__icon"
-                />
-              </div>
-              <div className="feature__text">התקנה מהירה</div>
-            </div>
-            <div className="feature">
-              <div className="feature__icon-container">
-                <img
-                  src="/images/globle/credits.png"
-                  alt="שירות אמין"
-                  className="feature__icon"
-                />
-              </div>
-              <div className="feature__text">פריסה לתשלומים</div>
-            </div>
-            <div className="feature">
-              <div className="feature__icon-container">
-                <img
-                  src="/images/globle/energi_rate.png"
-                  alt="משלוח חינם"
-                  className="feature__icon"
-                />
-              </div>
-              <div className="feature__text">חסכוני בדירוג אנרגטי A</div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* Products Section */}
-      
       {/* Info Section */}
-      <section className="info">
+      <section id="info" className="info">
         <div className="container no-space">
           <div className="info__content">
             <div className="padding-space">
@@ -214,7 +156,7 @@ export default async function Home() {
                     className="cta-icon"
                   />
                 </div>
-                <a href="#" className="cta-button blue-button big-button">
+                <a href={whatsappCtaLink} className="cta-button blue-button big-button">
                   תלחצו ותהיו הקונים החכמים בישראל!
                 </a>
               </div>
@@ -223,7 +165,7 @@ export default async function Home() {
         </div>
       </section>
       {/* Process Section */}
-      <section className="process">
+      <section id="process" className="process">
         <div className="container padding-space">
           <div className="padding-space"></div>
           <div className="process__content">
@@ -262,7 +204,7 @@ export default async function Home() {
                 קבוצות הייבריידיות
               </p>
               <p className="paragraph">
-                הקבוצות ההיברידיות של חברותא הן קבוצות מיוחדות שמאפשרות לנו לאחד
+                הקבוצות ההיברדיות של חברותא הן קבוצות מיוחדות שמאפשרות לנו לאחד
                 קבוצות גם כשהן לא ממוקדות על מוצר אחד.
               </p>
               <p className="paragraph">
@@ -307,7 +249,7 @@ export default async function Home() {
                     className="cta-icon"
                   />
                 </div>
-                <a href="#" className="cta-button blue-button big-button">
+                <a href={whatsappCtaLink} className="cta-button blue-button big-button">
                   תלחצו ותהיו הקונים החכמים בישראל!
                 </a>
               </div>
@@ -316,7 +258,7 @@ export default async function Home() {
         </div>
       </section>
       {/* FAQ Section */}
-      <section className="faq">
+      <section id="faq" className="faq">
         <div className="container">
           <div className="padding-space">
             <h2 className="title title-dark title-center">
@@ -489,7 +431,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="faq__cta-button">
-              <a href="#" className="cta-button red-button big-button">
+              <a href={whatsappCtaLink} className="cta-button red-button big-button">
                 תלחצו ותהיו הקונים החכמים בישראל!
               </a>
             </div>
@@ -503,24 +445,29 @@ export default async function Home() {
             <h2 className="guarantees__title">
               תחשבו על
               <br />
-              הזכויות שלכם
+              הזוגיות שלכם
             </h2>
             <p className="guarantees__subtitle">
-              (לרכישה עם המוכר בחברותא לא שווה את
+              (הויכוח עם המוכר בחנות לא שווה את 
               <br />
-              ההכנסות לכיסוי הזמן)
+              המכונת כביסה הזאת)
             </p>
-            <a href="#" className="guarantees__button">
+            {/* <a href="#" className="guarantees__button">
               שומרים על זכויות
               <br />
               בריאה בחברותא
-            </a>
-            <p className="guarantees__text">
+            </a> */}
+            <p className="paragraph">
               אם יש יעד שאנחנו מציבים
               <br />
               לעצמנו בראש בחברותא זה
             </p>
-            <p className="guarantees__highlight">שהלקוח חייב להיות מרוצה.</p>
+            <p className="paragraph paragraph__highlight paragraph-bold">שהלקוח חייב להיות מרוצה.</p>
+            <p className="paragraph">
+            הרי כולנו מרגישים את המציאות המורכבת שאנחנו חיים בה כישראלים
+
+
+            </p>
             <div className="guarantees__benefits">
               <div className="guarantees__benefit">
                 <div className="guarantees__benefit-icon-container">

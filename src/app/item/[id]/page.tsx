@@ -23,6 +23,8 @@ export default async function ItemPage({
   if (!item) {
     notFound();
   }
+
+  const whatsappCtaLink = `https://wa.me/972504428463?text=${encodeURIComponent(`היי חברותא 👋🏼\nאני רוצה להצטרף לקבוצת רכישה ל${item.name}`)}`;
   
   return (
     <div className="landing-page">
@@ -36,7 +38,7 @@ export default async function ItemPage({
             </span>
           </h1>
           <p className="hero__description">
-            <div dangerouslySetInnerHTML={{ __html: item.shortTitle }} />
+            <span dangerouslySetInnerHTML={{ __html: item.shortTitle }} />
           </p>
           <div className="product">
             <div className="product__image-container">
@@ -55,11 +57,14 @@ export default async function ItemPage({
             </div>
             <div className="product__price-tag">
               <div className="product__price-label">מחיר חברותא:</div>
-              <div className="product__price-current">₪{item.price}</div>
+              <div className="product__price-current"><span className="product__price-skl">₪</span>{item.price}</div>
               <div className="product__price-discount">
-                <span className="product__price-original">מחיר שוק: ₪{item.marketPrice}</span>
+                {/* <span className="product__price-original">מחיר שוק: ₪{item.marketPrice}</span> */}
                 <span className="product__price-savings">
-                  חיסכון מוערך של- ₪{item.marketPrice - item.price}
+                חיסכון מטורף של- 
+                <span className="product__price-savings-amount">
+                  <span className="product__price-skl">₪</span>{item.marketPrice - item.price}
+                </span>
                 </span>
               </div>
             </div>
@@ -67,7 +72,12 @@ export default async function ItemPage({
               description={item.description}
               longDescription={item.longDescription}
             />
-            <a href="#" className="cta-button">
+            <a 
+              href={whatsappCtaLink}
+              className="cta-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="cta-button__text">
                 לפרטים נוספים
                 <br />
@@ -118,10 +128,10 @@ export default async function ItemPage({
               </div>
             </div>
             <div className="stats__value stats__value--date">
-              <p className="stats__date">{new Date(Date.now() + 8 * 60 * 60 * 1000 + 45 * 60 * 1000).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'}).split('/').join('.')}</p>
+              <p className="stats__date">{new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'}).split('/').join('.')}</p>
               <span className="stats__timer">
                 <p className="stats__timer-label">שעות לסיום</p>
-                <CountdownTimer endDate={new Date(Date.now() + 8 * 60 * 60 * 1000 + 45 * 60 * 1000)} />
+                <CountdownTimer endDate={new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)} />
               </span>
             </div>
           </div>
@@ -184,33 +194,10 @@ export default async function ItemPage({
           </div>
         </div>
       </section>
-      {/* Products Section */}
-      {/* <section className="products">
-        <div className="container">
-          <h2 className="products__title">מוצרים שאנחנו מוכרים</h2>
-          <div className="products__grid">
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-            <div className="product-item" />
-          </div>
-          <a href="#" className="products__cta">
-            לכל המוצרים שלנו לחץ כאן &gt;&gt;&gt;&gt;{" "}
-          </a>
-        </div>
-      </section> */}
-
+      
 
       {/* Info Section */}
-      <section className="info">
+      <section id="info" className="info">
         <div className="container no-space">
           <div className="info__content">
             <div className="padding-space">
@@ -276,7 +263,7 @@ export default async function ItemPage({
                     className="cta-icon"
                   />
                 </div>
-                <a href="#" className="cta-button blue-button big-button">
+                <a href={whatsappCtaLink} className="cta-button blue-button big-button">
                   תלחצו ותהיו הקונים החכמים בישראל!
                 </a>
               </div>
@@ -285,7 +272,7 @@ export default async function ItemPage({
         </div>
       </section>
       {/* Process Section */}
-      <section className="process">
+      <section id="process" className="process">
         <div className="container padding-space">
           <div className="padding-space"></div>
           <div className="process__content">
@@ -324,7 +311,7 @@ export default async function ItemPage({
                 קבוצות הייבריידיות
               </p>
               <p className="paragraph">
-                הקבוצות ההיברידיות של חברותא הן קבוצות מיוחדות שמאפשרות לנו לאחד
+                הקבוצות ההיברדיות של חברותא הן קבוצות מיוחדות שמאפשרות לנו לאחד
                 קבוצות גם כשהן לא ממוקדות על מוצר אחד.
               </p>
               <p className="paragraph">
@@ -369,7 +356,7 @@ export default async function ItemPage({
                     className="cta-icon"
                   />
                 </div>
-                <a href="#" className="cta-button blue-button big-button">
+                <a href={whatsappCtaLink} className="cta-button blue-button big-button">
                   תלחצו ותהיו הקונים החכמים בישראל!
                 </a>
               </div>
@@ -378,7 +365,7 @@ export default async function ItemPage({
         </div>
       </section>
       {/* FAQ Section */}
-      <section className="faq">
+      <section id="faq" className="faq">
         <div className="container">
           <div className="padding-space">
             <h2 className="title title-dark title-center">
@@ -551,7 +538,7 @@ export default async function ItemPage({
               </div>
             </div>
             <div className="faq__cta-button">
-              <a href="#" className="cta-button red-button big-button">
+              <a href={whatsappCtaLink} className="cta-button red-button big-button">
                 תלחצו ותהיו הקונים החכמים בישראל!
               </a>
             </div>
@@ -565,24 +552,29 @@ export default async function ItemPage({
             <h2 className="guarantees__title">
               תחשבו על
               <br />
-              הזכויות שלכם
+              הזוגיות שלכם
             </h2>
             <p className="guarantees__subtitle">
-              (לרכישה עם המוכר בחברותא לא שווה את
+              (הויכוח עם המוכר בחנות לא שווה את 
               <br />
-              ההכנסות לכיסוי הזמן)
+              המכונת כביסה הזאת)
             </p>
-            <a href="#" className="guarantees__button">
+            {/* <a href="#" className="guarantees__button">
               שומרים על זכויות
               <br />
               בריאה בחברותא
-            </a>
-            <p className="guarantees__text">
+            </a> */}
+            <p className="paragraph">
               אם יש יעד שאנחנו מציבים
               <br />
               לעצמנו בראש בחברותא זה
             </p>
-            <p className="guarantees__highlight">שהלקוח חייב להיות מרוצה.</p>
+            <p className="paragraph paragraph__highlight paragraph-bold">שהלקוח חייב להיות מרוצה.</p>
+            <p className="paragraph">
+            הרי כולנו מרגישים את המציאות המורכבת שאנחנו חיים בה כישראלים
+
+
+            </p>
             <div className="guarantees__benefits">
               <div className="guarantees__benefit">
                 <div className="guarantees__benefit-icon-container">
