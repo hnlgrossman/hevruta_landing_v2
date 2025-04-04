@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { trackUserInfo, initializeTracking, getEngagementSummary, clearTrackingData } from '@/utils/userTracking';
+// import { usePathname } from 'next/navigation';
+import { /* trackUserInfo, */ getEngagementSummary, clearTrackingData } from '@/utils/userTracking';
+// import { usePathname } from 'next/navigation';
 
 // Define the type for engagement summary
 interface EngagementSummary {
@@ -30,16 +31,14 @@ export default function UserTracker() {
   const [showDebug, setShowDebug] = useState(false);
   const [summary, setSummary] = useState<EngagementSummary | null>(null);
   const [apiResponseStatus, setApiResponseStatus] = useState<string | null>(null);
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   useEffect(() => {
     // Initialize tracking on the client side
-    const userInfo = trackUserInfo();
     
     // Initialize tracking with auto-sending every 5 minutes (300000 ms)
-    initializeTracking({ autoSendInterval: 1000 * 1 });
+    // initializeTracking({ autoSendInterval: 1000 * 30 });
     
-    console.log('UserTracker component initialized', userInfo);
 
     // Show debug panel if URL has debug parameter
     const urlParams = new URLSearchParams(window.location.search);
@@ -62,20 +61,20 @@ export default function UserTracker() {
   useEffect(() => {
     // Don't run on initial mount, only on subsequent path changes
     if (typeof window !== 'undefined' && window.document.readyState === 'complete') {
-      console.log('Path changed to:', pathname);
+      // console.log('Path changed to:', pathname);
       
       // Re-initialize section tracking when path changes
       setTimeout(() => {
         // Import and use trackReadSections
         import('@/utils/userTracking').then(module => {
           if (typeof module.trackReadSections === 'function') {
-            const sectionsCount = module.trackReadSections();
-            console.log(`Re-initialized tracking for ${sectionsCount} sections after App Router navigation`);
+            // const sectionsCount = module.trackReadSections();
+            // console.log(`Re-initialized tracking for ${sectionsCount} sections after App Router navigation`);
           }
         }).catch(err => console.error('Failed to reinitialize tracking:', err));
       }, 300);
     }
-  }, [pathname]);
+  }, []);
 
   // Function to view current tracking data
   const handleViewData = () => {
@@ -156,6 +155,11 @@ export default function UserTracker() {
   } as React.CSSProperties;
 
   return (
+    <div>
+      <h1>User Tracker</h1>
+    </div>
+  );
+  return (
     <div style={debugPanelStyle}>
       <h4 style={{ margin: '0 0 10px 0' }}>User Tracking Debug</h4>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
@@ -166,16 +170,20 @@ export default function UserTracker() {
         <button style={buttonStyle} onClick={() => setShowDebug(false)}>Close</button>
       </div>
       
-      {apiResponseStatus && (
-        <div style={{ 
-          marginTop: '10px', 
-          padding: '5px', 
-          backgroundColor: apiResponseStatus.startsWith('Success') ? 'rgba(0,128,0,0.2)' : 'rgba(255,0,0,0.2)', 
-          borderRadius: '3px'
-        }}>
-          {apiResponseStatus}
-        </div>
-      )}
+      {apiResponseStatus && (() => {
+        // This assures TypeScript that apiResponseStatus is not null in this block
+        const status = apiResponseStatus as string;
+        return (
+          <div style={{ 
+            marginTop: '10px', 
+            padding: '5px', 
+            backgroundColor: status.startsWith('Success') ? 'rgba(0,128,0,0.2)' : 'rgba(255,0,0,0.2)', 
+            borderRadius: '3px'
+          }}>
+            {status}
+          </div>
+        );
+      })()}
       
       <div style={{ 
         marginTop: '10px', 
@@ -184,70 +192,74 @@ export default function UserTracker() {
         borderRadius: '3px',
         fontSize: '11px'
       }}>
-        <p style={{ margin: '0' }}><strong>Auto-tracking:</strong> Data is sent to server when tab focus changes (both entering and exiting).</p>
+        <p style={{ margin: '0' }}><strong>Tracking Status:</strong> Disabled to prevent infinite API calls.</p>
       </div>
       
-      {summary && (
-        <div style={{ marginTop: '10px' }}>
-          <h5 style={{ margin: '0 0 5px 0' }}>Tracking Summary:</h5>
-          <div style={{ fontSize: '11px' }}>
-            <p><strong>User ID:</strong> {summary.userId || 'Not set'}</p>
-            <p><strong>First Visit:</strong> {summary.firstVisitDate || 'Unknown'}</p>
-            <p><strong>Time on page:</strong> {summary.timeOnPage}</p>
-            <p><strong>Max scroll depth:</strong> {summary.maxScrollDepth}</p>
-            
-            <div style={{ marginTop: '8px' }}>
-              <h6 style={{ margin: '0 0 5px 0' }}>Most Read Sections:</h6>
-              {summary.topReadSections && summary.topReadSections.length > 0 ? (
-                <ol style={{ margin: '0', paddingLeft: '18px' }}>
-                  {summary.topReadSections.map((section, idx) => (
-                    <li key={idx}>
-                      <strong>{section.name}</strong> - {section.time}s ({section.percentage}% of active time)
-                    </li>
-                  ))}
-                </ol>
-              ) : (
-                <p>No sections read</p>
+      {summary && (() => {
+        // This assures TypeScript that summary is not null in this block
+        const s = summary as EngagementSummary;
+        return (
+          <div style={{ marginTop: '10px' }}>
+            <h5 style={{ margin: '0 0 5px 0' }}>Tracking Summary:</h5>
+            <div style={{ fontSize: '11px' }}>
+              <p><strong>User ID:</strong> {s.userId || 'Not set'}</p>
+              <p><strong>First Visit:</strong> {s.firstVisitDate || 'Unknown'}</p>
+              <p><strong>Time on page:</strong> {s.timeOnPage}</p>
+              <p><strong>Max scroll depth:</strong> {s.maxScrollDepth}</p>
+              
+              <div style={{ marginTop: '8px' }}>
+                <h6 style={{ margin: '0 0 5px 0' }}>Most Read Sections:</h6>
+                {s.topReadSections && s.topReadSections.length > 0 ? (
+                  <ol style={{ margin: '0', paddingLeft: '18px' }}>
+                    {s.topReadSections.map((section, idx) => (
+                      <li key={idx}>
+                        <strong>{section.name}</strong> - {section.time}s ({section.percentage}% of active time)
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>No sections read</p>
+                )}
+              </div>
+              
+              <p><strong>Exit without action:</strong> {s.exitWithoutAction !== undefined ? s.exitWithoutAction.toString() : '⚠️ undefined'}</p>
+              <p><strong>Navigated to WhatsApp:</strong> {s.navigatedToWhatsapp !== undefined ? s.navigatedToWhatsapp.toString() : '⚠️ undefined'}</p>
+              <p><strong>Navigated to Facebook:</strong> {s.navigatedToFacebook !== undefined ? s.navigatedToFacebook.toString() : '⚠️ undefined'}</p>
+              
+              <div style={{ marginTop: '8px' }}>
+                <h6 style={{ margin: '0 0 5px 0' }}>UTM Parameters:</h6>
+                <p><strong>Source:</strong> {s.utmSource || 'None'}</p>
+                <p><strong>Medium:</strong> {s.utmMedium || 'None'}</p>
+                <p><strong>Campaign:</strong> {s.utmCampaign || 'None'}</p>
+              </div>
+              
+              <h6 style={{ margin: '8px 0 5px 0' }}>Clicked buttons:</h6>
+              <ul style={{ margin: '0', paddingLeft: '15px' }}>
+                {s.clickedButtons && s.clickedButtons.length > 0 ? 
+                  s.clickedButtons.map((btn: string, i: number) => (
+                    <li key={i}>{btn}</li>
+                  )) : 
+                  <li>None</li>
+                }
+              </ul>
+              
+              <h6 style={{ margin: '8px 0 5px 0' }}>Navigation path:</h6>
+              <ul style={{ margin: '0', paddingLeft: '15px' }}>
+                {s.navigationPath && s.navigationPath.map((path: string, i: number) => (
+                  <li key={i}>{path}</li>
+                ))}
+              </ul>
+              
+              {(!s.navigatedToWhatsapp || !s.navigatedToFacebook || !s.userId) && (
+                <div style={{ marginTop: '10px', color: 'yellow' }}>
+                  <p>⚠️ Some properties are missing in tracking data.</p>
+                  <p>Try using the &quot;Force Reset&quot; button to fix.</p>
+                </div>
               )}
             </div>
-            
-            <p><strong>Exit without action:</strong> {summary.exitWithoutAction !== undefined ? summary.exitWithoutAction.toString() : '⚠️ undefined'}</p>
-            <p><strong>Navigated to WhatsApp:</strong> {summary.navigatedToWhatsapp !== undefined ? summary.navigatedToWhatsapp.toString() : '⚠️ undefined'}</p>
-            <p><strong>Navigated to Facebook:</strong> {summary.navigatedToFacebook !== undefined ? summary.navigatedToFacebook.toString() : '⚠️ undefined'}</p>
-            
-            <div style={{ marginTop: '8px' }}>
-              <h6 style={{ margin: '0 0 5px 0' }}>UTM Parameters:</h6>
-              <p><strong>Source:</strong> {summary.utmSource || 'None'}</p>
-              <p><strong>Medium:</strong> {summary.utmMedium || 'None'}</p>
-              <p><strong>Campaign:</strong> {summary.utmCampaign || 'None'}</p>
-            </div>
-            
-            <h6 style={{ margin: '8px 0 5px 0' }}>Clicked buttons:</h6>
-            <ul style={{ margin: '0', paddingLeft: '15px' }}>
-              {summary.clickedButtons && summary.clickedButtons.length > 0 ? 
-                summary.clickedButtons.map((btn: string, i: number) => (
-                  <li key={i}>{btn}</li>
-                )) : 
-                <li>None</li>
-              }
-            </ul>
-            
-            <h6 style={{ margin: '8px 0 5px 0' }}>Navigation path:</h6>
-            <ul style={{ margin: '0', paddingLeft: '15px' }}>
-              {summary.navigationPath && summary.navigationPath.map((path: string, i: number) => (
-                <li key={i}>{path}</li>
-              ))}
-            </ul>
-            
-            {(!summary.navigatedToWhatsapp || !summary.navigatedToFacebook || !summary.userId) && (
-              <div style={{ marginTop: '10px', color: 'yellow' }}>
-                <p>⚠️ Some properties are missing in tracking data.</p>
-                <p>Try using the &quot;Force Reset&quot; button to fix.</p>
-              </div>
-            )}
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 } 
