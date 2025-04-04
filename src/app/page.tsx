@@ -82,7 +82,6 @@ export default async function Home() {
 
                 <Link href={`/item/${product.slug}`} className="show_in_desktop cta-button product-card__button">
                   לפרטים נוספים
-                  <span className="cta-button__icon">→</span>
                 </Link>
               </div>
               </div>

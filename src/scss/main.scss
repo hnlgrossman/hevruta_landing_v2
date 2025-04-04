@@ -1195,20 +1195,18 @@ a {
   margin-inline: 6px;
 }
 
-.show_in_desktop {
-  display: none !important;
 
-  @include tablet {
-    display: block;
+.show_in_desktop {
+  /* This media query targets all devices with a maximum width of 1024px */
+  @media screen and (max-width: 1024px) {
+    display: none !important;
   }
 }
 
 .show_in_mobile {
-  display: block;
-
-  @include tablet {
+  @media screen and (min-width: 768px) {
     display: none !important;
-  }
+  }  
 }
 
 .scroll-to-top-button {

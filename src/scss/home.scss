@@ -187,23 +187,31 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding-bottom: $spacing-md;
 
+  @include tablet {
+    padding-bottom: 0;
+  }
+
   .img_text_con {
     display: flex;
     position: relative;
     align-items: center;
   }
   
-  @include tablet {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    grid-template-rows: 1fr;
-  }
+  // @include tablet {
+  //   display: grid;
+  //   grid-template-columns: 1.2fr 0.8fr;
+  //   grid-template-rows: 1fr;
+  // }
 
   &__button {
 
     width: 85%;
     min-width: 85%;
     margin: 0 auto;
+
+    @include tablet {
+      width: 100% !important;
+    }
   }
   
   &:hover {
@@ -221,6 +229,11 @@
       height: auto;
       width: auto;
       max-height: 30px;
+
+      @include tablet {
+        min-height: 50px;
+        min-width: 50px;
+      }
     }
     
     &-name {
