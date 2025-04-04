@@ -23,15 +23,41 @@ async function sendBufferedData() {
   try {
     isSending = true;
     const dataToSend = [...dataBuffer];
-    dataBuffer = [];
+    const tempBuffer = [...dataBuffer]; // Create a temporary copy
+    dataBuffer = []; // Clear the buffer only after successful send
     lastSendTime = Date.now();
     
     const response = await sendToGoogleScript(dataToSend);
     console.log('Sent buffered data to Google Script:', response);
+    
+    // If sending failed, put the data back in the buffer
+    if (!response.success) {
+      console.warn('Failed to send data to Google Script:', response.error);
+      dataBuffer = [...tempBuffer, ...dataBuffer];
+      
+      // Log to file for debugging
+      const logFile = path.join(LOG_DIR, `google_script_error_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
+      fs.writeFileSync(logFile, JSON.stringify({
+        error: response.error,
+        data: tempBuffer.slice(0, 2), // Log just a sample of the data for privacy
+        timestamp: new Date().toISOString()
+      }, null, 2));
+    }
   } catch (error) {
     console.error('Error sending buffered data:', error);
-    // Put the data back in the buffer to try again
+    // Put the data back in the buffer to try again later
     dataBuffer = [...dataBuffer];
+    
+    // Log the error to a file
+    try {
+      const logFile = path.join(LOG_DIR, `tracking_error_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
+      fs.writeFileSync(logFile, JSON.stringify({
+        error: error instanceof Error ? error.message : String(error),
+        timestamp: new Date().toISOString()
+      }, null, 2));
+    } catch (logError) {
+      console.error('Failed to write error log:', logError);
+    }
   } finally {
     isSending = false;
   }
