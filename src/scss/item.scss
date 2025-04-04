@@ -150,18 +150,48 @@
     background-color: $accent-color;
     background-image: url('/images/globle/btn_bg.png');
     background-repeat: no-repeat;
-    background-position: top;
-    background-size: 100% 64%;
+    background-position: bottom;
+    background-size: cover;
     color: $primary-color;
     padding: $spacing-sm $spacing-md;
     border-radius: $spacing-sm;
     text-align: center;
-    margin-bottom: $spacing-lg;
-    width: 100%;
+    flex: 3;
     max-width: 300px;
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
+    position: relative;
+
+    &-container {
+      display: flex;
+      gap: $spacing-md;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: $spacing-lg;
+    }
+  }
+  
+  &__market-price {
+    background-color: #999999;
+    padding: $spacing-sm;
+    border-radius: $spacing-sm;
+    text-align: center;
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+
+    &-label {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    &-value {
+      font-size: 1.8rem;
+      color: #fff;
+      font-weight: $font-weight-bold;
+      line-height: 1.2;
+    }
   }
   
   &__price-label {
@@ -243,6 +273,13 @@
       line-height: 1.4;
     }
     
+    &-model {
+      display: block;
+      font-weight: $font-weight-bold;
+      color: $accent-color;
+      margin-bottom: $spacing-xs;
+    }
+    
     &-warranty {
       display: inline-block;
       color: $accent-color;
@@ -250,8 +287,20 @@
       margin-right: $spacing-xs;
       cursor: pointer;
       transition: color 0.2s ease;
-      
-      
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    width: 100%;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: center;
     }
   }
 
@@ -270,6 +319,14 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
+    }
+    
+    &--home {
+      background-color: $accent-color;
+      
+      &::before {
+        display: none;
+      }
     }
     
     @include tablet {
@@ -407,7 +464,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 10px;
     }
 
     &--date {
@@ -537,9 +595,15 @@
     text-align: center;
     width: calc(33.333% - #{$spacing-md});
     
-    &__icon-container {
+    &__icon-container { position: relative;
       width: 70px;
       height: 70px;
+
+      .on_img_text { position: absolute; color: #333; align-content: center; font-size: 12px; font-weight: 900; top: 2px; line-height: 1.2; inset-inline: 17px; bottom: 0; 
+        @include tablet {
+          font-size: 16px;
+        }
+      }
     }
     
     &__icon {

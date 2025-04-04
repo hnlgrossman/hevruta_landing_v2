@@ -8,6 +8,7 @@ interface CountdownTimerProps {
 
 export default function CountdownTimer({ endDate }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState({
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
@@ -18,13 +19,16 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
       const difference = endDate.getTime() - new Date().getTime();
       
       if (difference > 0) {
+        const totalHours = Math.floor(difference / (1000 * 60 * 60));
         setTimeLeft({
-          hours: Math.floor(difference / (1000 * 60 * 60)),
+          days: Math.floor(totalHours / 24),
+          hours: totalHours % 24,
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60)
         });
       } else {
         setTimeLeft({
+          days: 0,
           hours: 0,
           minutes: 0,
           seconds: 0
@@ -44,9 +48,9 @@ export default function CountdownTimer({ endDate }: CountdownTimerProps) {
   return (
     <div className="countdown-timer">
       <div className="countdown-timer__value">
-        {String(timeLeft.hours).padStart(2, '0')}:
-        {String(timeLeft.minutes).padStart(2, '0')}:
-        {String(timeLeft.seconds).padStart(2, '0')}
+        {timeLeft.days} ימים
+        <br />
+        {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
       </div>
     </div>
   );

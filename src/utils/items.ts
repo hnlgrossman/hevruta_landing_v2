@@ -5,6 +5,7 @@ export interface Item {
   name: string;
   slug: string;
   description: string;
+  modelNumber: string;
   productImageUrl: string;
   brandImageUrl: string;
   price: number;

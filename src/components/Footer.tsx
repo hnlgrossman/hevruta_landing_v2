@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className="footer__container">
           <div className="footer__section">
             <div className="footer__logo">
-              <img src="/logo.png" alt="לוגו חברותא" />
+              <img src="/logo.svg" alt="לוגו חברותא" />
             </div>
             <div className="footer__social">
               <a 
@@ -45,15 +45,15 @@ export const Footer = () => {
                 <span className="footer__link-icon">📞</span>
                 יצירת קשר
               </Link>
-              <Link href="/#info" className="footer__link">
+              <Link href="#info" className="footer__link">
                 <span className="footer__link-icon">❓</span>
                 מה זה חברותא
               </Link>
-              <Link href="/#process" className="footer__link">
+              <Link href="#process" className="footer__link">
                 <span className="footer__link-icon">💰</span>
                 איך המחירים שלנו כאלה זולים?
               </Link>
-              <Link href="/#faq" className="footer__link">
+              <Link href="#faq" className="footer__link">
                 <span className="footer__link-icon">❔</span>
                 שאלות נפוצות
               </Link>

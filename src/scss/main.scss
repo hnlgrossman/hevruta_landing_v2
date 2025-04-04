@@ -225,6 +225,9 @@ a {
     animation: iconFloat 1s ease-in-out infinite;
     // filter: brightness(1);
     // transition: filter 0.3s ease;
+    img {
+      filter: brightness(0) invert(1);
+    }
   }
   
   .cta-icon {
@@ -1049,6 +1052,7 @@ a {
 
 .countdown-timer__value {
   animation: pulse 1s infinite;
+  line-height: 1.2;
 }
 
 @keyframes pulse {
@@ -1090,6 +1094,10 @@ a {
       width: 150px;
       height: auto;
       margin-bottom: $spacing-sm;
+
+      @include tablet {
+        width: 200px;
+      }
     }
     
     &-text {
@@ -1182,3 +1190,85 @@ a {
     color: rgba(255, 255, 255, 0.7);
   }
 } 
+
+.space-word {
+  margin-inline: 6px;
+}
+
+.show_in_desktop {
+  display: none !important;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+.show_in_mobile {
+  display: block;
+
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background-color: $accent-color;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+body.trigger-position-right #enable-toolbar-trigger {
+  left: 4px !important;
+    right: unset !important;
+}
