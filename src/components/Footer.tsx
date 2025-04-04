@@ -41,10 +41,15 @@ export const Footer = () => {
                 <span className="footer__link-icon">📦</span>
                 כל המוצרים שלנו
               </Link>
-              <Link href="https://wa.me/972504428463" className="footer__link">
+              <a 
+                href="https://wa.me/972504428463" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__link"
+              >
                 <span className="footer__link-icon">📞</span>
                 יצירת קשר
-              </Link>
+              </a>
               <Link href="#info" className="footer__link">
                 <span className="footer__link-icon">❓</span>
                 מה זה חברותא

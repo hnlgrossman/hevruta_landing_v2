@@ -14,6 +14,7 @@ if (!fs.existsSync(LOG_DIR)) {
 let dataBuffer: Record<string, unknown>[] = [];
 let lastSendTime = Date.now();
 let isSending = false;
+const sendInterval = 1000 * 30;
 
 // Function to send buffered data to Google Script
 async function sendBufferedData() {
@@ -42,8 +43,16 @@ async function sendBufferedData() {
 // Check if it's time ms_toto send data
 function checkAndSendData() {
   console.log("checkAndSendData");
+  console.log(JSON.stringify({
+    lastSendTime,
+    dataBuffer,
+    sendInterval,
+    currentTime: Date.now(),
+    diff: Date.now() - lastSendTime,
+    shouldSend: Date.now() - lastSendTime >= sendInterval && dataBuffer.length > 0
+  }));
   const currentTime = Date.now();
-  if (currentTime - lastSendTime >= 30000 && dataBuffer.length > 0) {
+  if (currentTime - lastSendTime >= sendInterval && dataBuffer.length > 0) {
     sendBufferedData();
   }
 }
@@ -55,7 +64,7 @@ function format_seconds(seconds: number): string {
 }
 
 // Set up interval to check and send data every 30 seconds
-setInterval(checkAndSendData, 1000 * 60);
+setInterval(checkAndSendData, sendInterval);
 
 export async function POST(request: NextRequest) {
   try {
