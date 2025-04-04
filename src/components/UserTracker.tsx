@@ -37,7 +37,7 @@ export default function UserTracker() {
     const userInfo = trackUserInfo();
     
     // Initialize tracking with auto-sending every 5 minutes (300000 ms)
-    initializeTracking({ autoSendInterval: 10000 });
+    initializeTracking({ autoSendInterval: 1000 * 1 });
     
     console.log('UserTracker component initialized', userInfo);
 

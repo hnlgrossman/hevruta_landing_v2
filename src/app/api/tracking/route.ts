@@ -82,7 +82,7 @@ function format_seconds(seconds: number): string {
 }
 
 // Set up interval to check and send data every 30 seconds
-setInterval(checkAndSendData, sendInterval);
+// setInterval(checkAndSendData, sendInterval);
 
 export async function POST(request: NextRequest) {
   try {
@@ -105,19 +105,20 @@ export async function POST(request: NextRequest) {
       navigated_to_facebook: data.navigatedToFacebook,
     }
     
-    const index = dataBuffer.findIndex(item => item.id == parsedData.id);
-    if(index > -1) {
-      console.log("replace");
+    // const index = dataBuffer.findIndex(item => item.id == parsedData.id);
+    // if(index > -1) {
+    //   console.log("replace");
       
-      dataBuffer[index] = parsedData; // Replace with new data
-    } else {
-      console.log("new");
-      dataBuffer.push(parsedData);
-    }
-    // Add the data to the buffer
+    //   dataBuffer[index] = parsedData; // Replace with new data
+    // } else {
+    //   console.log("new");
+    //   dataBuffer.push(parsedData);
+    // }
+    // // Add the data to the buffer
     
-    // Check if we should send data now
-    checkAndSendData();
+    // // Check if we should send data now
+    // checkAndSendData();
+    sendToGoogleScript([parsedData]);
     
     return NextResponse.json({ 
       success: true, 
