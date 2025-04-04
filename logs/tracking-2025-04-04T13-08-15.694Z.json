@@ -1,0 +1,30 @@
+{
+  "userId": "user_m92svct0kdis0js",
+  "firstVisitDate": "04.04.2025, 16:07:55",
+  "timeOnPage": "20",
+  "maxScrollDepth": "0",
+  "clickedButtons": [],
+  "mostReadSection": "דף בית - hero (20s, 100%)",
+  "topReadSections": [
+    {
+      "name": "דף בית - hero",
+      "time": 20,
+      "percentage": 100
+    },
+    {
+      "name": "דף בית - מוצרים",
+      "time": 20,
+      "percentage": 100
+    }
+  ],
+  "exitWithoutAction": true,
+  "navigatedToWhatsapp": false,
+  "navigatedToFacebook": false,
+  "navigationPath": [
+    "/"
+  ],
+  "utmSource": null,
+  "utmMedium": null,
+  "utmCampaign": null,
+  "serverTimestamp": "2025-04-04T13:08:15.694Z"
+}

@@ -32,7 +32,7 @@ export default async function ItemPage({
   return (
     <div className="landing-page">
       {/* Hero Section */}
-      <section className="hero padding-space">
+      <section className="hero padding-space" data-user-tracking="דף מוצר - עליון">
         <div className="container">
           <h1 className="hero__title">
             <span className="hero__title-main">ברוך הבא לקבוצת</span>
@@ -108,7 +108,7 @@ export default async function ItemPage({
         </div>
       </section>
       {/* Stats Section */}
-      <section className="stats">
+      <section className="stats" data-user-tracking="דף מוצר - סטטיסטיקות">
         <div className="container">
           <div className="stats__labels">
             <div className="stats__label">
@@ -159,7 +159,7 @@ export default async function ItemPage({
       </section>
 
       {/* Features Section */}
-      <section className="features">
+      <section className="features" data-user-tracking="דף מוצר - תכונות">
         <div className="container">
           <div className="features__grid">
             <div className="feature">

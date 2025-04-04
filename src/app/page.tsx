@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero padding-space">
+      <section className="hero padding-space" data-user-tracking="דף בית - עליון">
       <div className="container">
         <div className="hero__content">
           <div className="hero__logo">
@@ -32,7 +32,7 @@ export default async function Home() {
       </div>
     </section>
 
-    <section id="products" className="products padding-space">
+    <section id="products" className="products padding-space" data-user-tracking="דף בית - מוצרים">
       <div className="container">
         <h2 className="title title-center">
           <span className="title-highlight">המוצרים</span> שלנו

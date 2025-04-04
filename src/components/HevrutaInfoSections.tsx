@@ -6,7 +6,7 @@ export default async function HevrutaInfoSections() {
   return (
     <div className="hevruta_info_sections">
             {/* Info Section */}
-            <section id="info" className="info">
+            <section id="info" className="info" data-user-tracking="דף מוצר - מידע">
         <div className="container no-space">
           <div className="info__content">
             <div className="padding-space">
@@ -81,7 +81,7 @@ export default async function HevrutaInfoSections() {
         </div>
       </section>
       {/* Process Section */}
-      <section id="process" className="process">
+      <section id="process" className="process" data-user-tracking="דף מוצר - תהליך">
         <div className="container padding-space">
           <div className="padding-space"></div>
           <div className="process__content">
@@ -174,7 +174,7 @@ export default async function HevrutaInfoSections() {
         </div>
       </section>
       {/* FAQ Section */}
-      <section id="faq" className="faq">
+      <section id="faq" className="faq" data-user-tracking="דף מוצר - שאלות ותשובות">
         <div className="container">
           <div className="padding-space">
             <h2 className="title title-dark title-center">
@@ -355,7 +355,7 @@ export default async function HevrutaInfoSections() {
         </div>
       </section>
       {/* Guarantees Section */}
-      <section className="guarantees">
+      <section className="guarantees" data-user-tracking="דף מוצר - ביטוחים">
         <div className="container">
           <div className="padding-space">
             <h2 className="guarantees__title">

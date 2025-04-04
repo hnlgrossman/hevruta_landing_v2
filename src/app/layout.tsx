@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import WhatsAppButton from '../components/WhatsAppButton';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import Script from 'next/script';
+import UserTracker from '@/components/UserTracker';
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Footer />
         <ScrollToTopButton />
         <WhatsAppButton />
+        <UserTracker />
         <Script src="https://cdn.enable.co.il/licenses/enable-L2556825acdsy3oi-0424-69920/init.js" />
       </body> 
     </html>
