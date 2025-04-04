@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 import { sendToGoogleScript } from '../services/google_sheets.service';
 // Directory for logs
-const LOG_DIR = path.join(process.cwd(), 'logs');
+// const LOG_DIR = path.join(process.cwd(), 'logs');
 
 // Ensure log directory exists
-if (!fs.existsSync(LOG_DIR)) {
-  fs.mkdirSync(LOG_DIR, { recursive: true });
-}
+// if (!fs.existsSync(LOG_DIR)) {
+//   fs.mkdirSync(LOG_DIR, { recursive: true });
+// }
 
 // Data buffer to store tracking data
 let dataBuffer: Record<string, unknown>[] = [];
@@ -36,28 +36,20 @@ async function sendBufferedData() {
       dataBuffer = [...tempBuffer, ...dataBuffer];
       
       // Log to file for debugging
-      const logFile = path.join(LOG_DIR, `google_script_error_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
-      fs.writeFileSync(logFile, JSON.stringify({
-        error: response.error,
-        data: tempBuffer.slice(0, 2), // Log just a sample of the data for privacy
-        timestamp: new Date().toISOString()
-      }, null, 2));
+      // const logFile = path.join(LOG_DIR, `google_script_error_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
+      // fs.writeFileSync(logFile, JSON.stringify({
+      //   error: response.error,
+      //   data: tempBuffer.slice(0, 2), // Log just a sample of the data for privacy
+      //   timestamp: new Date().toISOString()
+      // }, null, 2));
     }
   } catch (error) {
     console.error('Error sending buffered data:', error);
     // Put the data back in the buffer to try again later
     dataBuffer = [...dataBuffer];
     
-    // Log the error to a file
-    try {
-      const logFile = path.join(LOG_DIR, `tracking_error_${new Date().toISOString().replace(/[:.]/g, '-')}.log`);
-      fs.writeFileSync(logFile, JSON.stringify({
-        error: error instanceof Error ? error.message : String(error),
-        timestamp: new Date().toISOString()
-      }, null, 2));
-    } catch (logError) {
-      console.error('Failed to write error log:', logError);
-    }
+    // Error logging is disabled since fs operations are commented out
+    // If you need file logging, uncomment the fs import and LOG_DIR setup above
   } finally {
     isSending = false;
   }

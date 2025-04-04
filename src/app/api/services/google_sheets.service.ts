@@ -69,6 +69,9 @@ export async function sendToGoogleScript(
       
       const responseData = await response.json();
       
+      // Reset retry counter upon success
+      console.log('Successfully sent data to Google Script');
+      
       return {
         success: true,
         data: responseData

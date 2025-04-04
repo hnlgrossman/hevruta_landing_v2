@@ -90,6 +90,13 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
     if (document.visibilityState === 'visible') {
       // Tab became visible
       tabActiveStartTime = Date.now();
+      
+      // Send API call when the user returns to the tab
+      sendTrackingDataToServer().then(result => {
+        console.log('Visibility change (tab visible) tracking data sent:', result);
+      }).catch(err => {
+        console.error('Error sending tracking data on tab visible:', err);
+      });
     } else {
       // Tab hidden, update total active time
       if (tabActiveStartTime !== null) {
@@ -98,6 +105,13 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
       }
       // Save data when tab becomes hidden
       saveEngagementData();
+      
+      // Send API call when the user exits the tab
+      sendTrackingDataToServer().then(result => {
+        console.log('Visibility change (tab hidden) tracking data sent:', result);
+      }).catch(err => {
+        console.error('Error sending tracking data on tab hidden:', err);
+      });
     }
   });
   

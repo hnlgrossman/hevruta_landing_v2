@@ -177,6 +177,16 @@ export default function UserTracker() {
         </div>
       )}
       
+      <div style={{ 
+        marginTop: '10px', 
+        padding: '5px', 
+        backgroundColor: 'rgba(0,0,255,0.2)', 
+        borderRadius: '3px',
+        fontSize: '11px'
+      }}>
+        <p style={{ margin: '0' }}><strong>Auto-tracking:</strong> Data is sent to server when tab focus changes (both entering and exiting).</p>
+      </div>
+      
       {summary && (
         <div style={{ marginTop: '10px' }}>
           <h5 style={{ margin: '0 0 5px 0' }}>Tracking Summary:</h5>
