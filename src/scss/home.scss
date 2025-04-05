@@ -37,6 +37,7 @@
         align-items: center;
         justify-content: space-between;
         gap: $spacing-xxl;
+        padding-block: 100px;
       }
     }
   
@@ -112,7 +113,7 @@
 
 
 .products {
-  background-color: #0a1a2f;
+  background-color: $primary-color;
   padding-block: $spacing-xl $spacing-xxl;
   direction: rtl;
   

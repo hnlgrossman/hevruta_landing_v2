@@ -78,9 +78,7 @@ export default async function ItemPage({
               </div>
             </div>
             <ProductDetails 
-              description={item.description}
-              longDescription={item.longDescription}
-              modelNumber={item.modelNumber}
+              item={item}
             />
             <div className="product__buttons">
               <a 

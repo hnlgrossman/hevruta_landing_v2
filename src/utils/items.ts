@@ -12,6 +12,7 @@ export interface Item {
   marketPrice: number;
   longDescription?: string;
   shortTitle: string;
+  detailed_list?: string[];
 }
 
 export function getAllItems(): Item[] {

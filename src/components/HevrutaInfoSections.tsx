@@ -73,7 +73,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                   />
                 </div>
                 <a href={whatsappCtaLink} className="cta-button blue-button big-button">
-                  תלחצו ותהיו הקונים החכמים בישראל!
+                  הצטרפו עכשיו לקבוצת הקנייה הבאה!
                 </a>
               </div>
             </div>
@@ -165,8 +165,8 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                     className="cta-icon"
                   />
                 </div>
-                <a href={whatsappCtaLink} className="cta-button blue-button big-button">
-                  תלחצו ותהיו הקונים החכמים בישראל!
+                <a href={whatsappCtaLink} className="cta-button green-button big-button pulse-animation">
+                  לחסכון משמעותי - צרו קשר עכשיו!
                 </a>
               </div>
             </div>
@@ -347,8 +347,8 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
               </div>
             </div>
             <div className="faq__cta-button">
-              <a href={whatsappCtaLink} className="cta-button red-button big-button">
-                תלחצו ותהיו הקונים החכמים בישראל!
+              <a href={whatsappCtaLink} className="cta-button red-button big-button shadow-effect">
+                בואו לחסוך זמן וכסף עכשיו!
               </a>
             </div>
           </div>

@@ -288,6 +288,26 @@
       cursor: pointer;
       transition: color 0.2s ease;
     }
+    
+    &-list {
+      text-align: right;
+      margin-top: $spacing-md;
+      padding-right: $spacing-md;
+      
+      li {
+        margin-bottom: $spacing-xs;
+        line-height: 1.4;
+        position: relative;
+        
+        &::before {
+          content: "•";
+          color: $accent-color;
+          font-weight: bold;
+          display: inline-block;
+          margin-left: 6px;
+        }
+      }
+    }
   }
 
   &__buttons {
@@ -440,6 +460,7 @@
   
   &__label, &__value {
     padding: 10px;
+    overflow: hidden;
   }
   
   &__icon {

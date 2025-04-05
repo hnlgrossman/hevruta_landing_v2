@@ -1,14 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { Item } from '@/utils/items';
 
-interface ProductDetailsProps {
-  description: string;
-  longDescription?: string;
-  modelNumber?: string;
-}
 
-export default function ProductDetails({ description, longDescription, modelNumber }: ProductDetailsProps) {
+export default function ProductDetails({ item: {description, modelNumber, detailed_list} }: { item: Item }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -17,7 +13,20 @@ export default function ProductDetails({ description, longDescription, modelNumb
       <div className={`product__details-content ${isExpanded ? 'expanded' : ''}`}>
         <p className="product__details-description">
           {modelNumber && <span className="product__details-model">מספר דגם: {modelNumber}</span>}
-          {isExpanded ? longDescription : description}
+          {isExpanded ? (
+            <>
+              {description}
+              {detailed_list && detailed_list.length > 0 && (
+                <ul className="product__details-list">
+                  {detailed_list.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </>
+          ) : (
+            description
+          )}
           <span 
             className="product__details-warranty"
             onClick={() => setIsExpanded(!isExpanded)}
