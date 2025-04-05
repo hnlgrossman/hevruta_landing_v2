@@ -414,9 +414,67 @@
   }
 }
 
-
+// WhatsApp Section Styling
+.whatsapp-section {
+  background-color: $white;
+  padding: $spacing-xl 0;
+  text-align: center;
+  direction: rtl;
   
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
   
+  .whatsapp-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+  }
   
+  .title {
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+    
+    &-highlight {
+      color: $accent-color;
+    }
+  }
   
+  .paragraph {
+    margin-bottom: $spacing-lg;
+    max-width: 600px;
+  }
+  
+  .whatsapp-button_home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    background-color: #25D366;
+    color: $white;
+    font-weight: 700;
+    padding: $spacing-md $spacing-xl;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    width: 100%;
+    
+    &:hover {
+      background-color: darken(#25D366, 5%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 211, 102, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    .whatsapp-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
 }

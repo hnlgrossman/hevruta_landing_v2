@@ -128,6 +128,7 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
     window.clearInterval(autoSendInterval);
   }
   
+  sendTrackingDataToServer();
   autoSendInterval = window.setInterval(() => {
     // Only send tracking data if the tab is visible
     if (document.visibilityState === 'visible') {
@@ -368,7 +369,7 @@ export const trackReadSections = () => {
         if (!sectionTimers[sectionName]) {
           sectionTimers[sectionName] = { timer: 0, time: 0 };
           // Add to readSectionsOrder if this is the first time seeing this section
-          if (!engagement.readSectionsOrder.includes(sectionName)) {
+          if (engagement && engagement.readSectionsOrder && !engagement.readSectionsOrder.includes(sectionName)) {
             engagement.readSectionsOrder.push(sectionName);
           }
         }
@@ -477,7 +478,7 @@ export const getEngagementSummary = () => {
   const currentActiveTimeOnPage = Math.floor(currentActiveTime / 1000);
   
   // Get sections in order they were read, limited to top 10
-  const topReadSections = engagement.readSectionsOrder
+  const topReadSections = (engagement.readSectionsOrder || [])
     .slice(0, 10)
     .map(name => ({
       name,
