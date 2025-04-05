@@ -94,7 +94,7 @@ export default async function Home() {
       </div>
     </section>
 
-    <HevrutaInfoSections/>
+    <HevrutaInfoSections page_track_key="דף בית" />
       
 
     </div>

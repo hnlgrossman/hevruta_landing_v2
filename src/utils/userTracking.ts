@@ -20,6 +20,7 @@ export interface UserEngagement {
   maxScrollDepth: number;
   clickedButtons: string[];
   readSections: Record<string, number>;
+  readSectionsOrder: string[];  // New field to track order of sections read
   exitWithoutAction: boolean;
   navigatedToWhatsapp: boolean;
   navigatedToFacebook: boolean;
@@ -92,11 +93,7 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
       tabActiveStartTime = Date.now();
       
       // Send API call when the user returns to the tab
-      sendTrackingDataToServer().then(result => {
-        console.log('Visibility change (tab visible) tracking data sent:', result);
-      }).catch(err => {
-        console.error('Error sending tracking data on tab visible:', err);
-      });
+      sendTrackingDataToServer();
     } else {
       // Tab hidden, update total active time
       if (tabActiveStartTime !== null) {
@@ -107,11 +104,7 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
       saveEngagementData();
       
       // Send API call when the user exits the tab
-      sendTrackingDataToServer().then(result => {
-        console.log('Visibility change (tab hidden) tracking data sent:', result);
-      }).catch(err => {
-        console.error('Error sending tracking data on tab hidden:', err);
-      });
+      sendTrackingDataToServer();
     }
   });
   
@@ -130,29 +123,17 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
   // Track page changes
   trackNavigation();
   
-  // Set up auto-sending of tracking data if interval is provided
-  if (options?.autoSendInterval && options.autoSendInterval > 0) {
-    // Clear any existing interval
-    if (autoSendInterval) {
-      window.clearInterval(autoSendInterval);
-    }
-    
-    // Initial send only if tab is visible
+  // Set up auto-sending of tracking data every minute (60000ms) when tab is visible
+  if (autoSendInterval) {
+    window.clearInterval(autoSendInterval);
+  }
+  
+  autoSendInterval = window.setInterval(() => {
+    // Only send tracking data if the tab is visible
     if (document.visibilityState === 'visible') {
       sendTrackingDataToServer();
     }
-    
-    // Set up new interval that checks visibility before sending
-    autoSendInterval = window.setInterval(() => {
-      // Only send tracking data if the tab is visible
-      if (document.visibilityState === 'visible') {
-        console.log('Auto-sending tracking data to server');
-        sendTrackingDataToServer();
-      } else {
-        console.log('Tab not visible, skipping auto-send');
-      }
-    }, options.autoSendInterval);
-  }
+  }, options?.autoSendInterval || 60000);
   
   // Send data when user leaves the page or tab is hidden
   window.addEventListener('beforeunload', async () => {
@@ -164,9 +145,6 @@ export const initializeTracking = (options?: { autoSendInterval?: number }) => {
     
     saveAndFinalizeTracking();
   });
-  
-  // Log initial tracking setup
-  console.log('Tracking initialized');
 };
 
 // Load previous engagement data or initialize new data
@@ -179,7 +157,6 @@ const loadOrResetEngagementData = () => {
       
       // Migrate old data format if needed
       if (parsedData.navigatedToCatalog !== undefined && parsedData.navigatedToWhatsapp === undefined) {
-        console.log('Migrating old tracking data format');
         parsedData.navigatedToWhatsapp = false; // Initialize with false
         delete parsedData.navigatedToCatalog; // Remove old property
       }
@@ -203,7 +180,6 @@ const loadOrResetEngagementData = () => {
       }
       
       engagement = parsedData;
-      console.log('Loaded previous tracking data', engagement);
       
       // Add current path to navigation path if it's a new page
       const currentPath = window.location.pathname;
@@ -215,8 +191,7 @@ const loadOrResetEngagementData = () => {
     } else {
       resetEngagementData();
     }
-  } catch (error) {
-    console.error('Error loading tracking data', error);
+  } catch {
     resetEngagementData();
   }
 };
@@ -239,9 +214,8 @@ const saveEngagementData = () => {
     }
     
     localStorage.setItem(STORAGE_KEY, JSON.stringify(engagement));
-    console.log('Saved tracking data', engagement);
-  } catch (error) {
-    console.error('Error saving tracking data', error);
+  } catch {
+    // Silent error handling
   }
 };
 
@@ -277,10 +251,11 @@ const resetEngagementData = () => {
     userId: getUserId(),
     firstVisitDate: getFirstVisitDate(),
     timeOnPage: 0,
-    activeTimeOnPage: 0, // Initialize active time
+    activeTimeOnPage: 0,
     maxScrollDepth: 0,
     clickedButtons: [],
     readSections: {},
+    readSectionsOrder: [], // Initialize empty array for section order
     exitWithoutAction: true,
     navigatedToWhatsapp: false,
     navigatedToFacebook: false,
@@ -392,6 +367,10 @@ export const trackReadSections = () => {
         // Section is visible, start timer
         if (!sectionTimers[sectionName]) {
           sectionTimers[sectionName] = { timer: 0, time: 0 };
+          // Add to readSectionsOrder if this is the first time seeing this section
+          if (!engagement.readSectionsOrder.includes(sectionName)) {
+            engagement.readSectionsOrder.push(sectionName);
+          }
         }
         
         // Clear any existing timer to prevent duplicates
@@ -440,7 +419,6 @@ export const trackReadSections = () => {
     }
   });
   
-  console.log(`Initialized tracking for ${sections.length} sections`);
   return sections.length;
 };
 
@@ -448,16 +426,13 @@ export const trackReadSections = () => {
 const trackExitBehavior = () => {
   // If user hasn't interacted after 30 seconds, mark as potential bounce
   setTimeout(() => {
-    if (engagement.exitWithoutAction) {
-      console.log('User inactive for 30 seconds');
-    }
+    // Silent check
   }, 30000);
   
   // Track mouse leaving the window (potential exit intent)
   document.addEventListener('mouseleave', (event) => {
     if (event.clientY <= 0 && !isExitTracked) {
       isExitTracked = true;
-      console.log('Exit intent detected');
       
       // Record time on page at exit intent
       engagement.timeOnPage = Math.floor((Date.now() - startTime) / 1000);
@@ -501,14 +476,13 @@ export const getEngagementSummary = () => {
   }
   const currentActiveTimeOnPage = Math.floor(currentActiveTime / 1000);
   
-  // Get most read sections - top 3
-  const topReadSections = Object.entries(engagement.readSections)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([name, time]) => ({
+  // Get sections in order they were read, limited to top 10
+  const topReadSections = engagement.readSectionsOrder
+    .slice(0, 10)
+    .map(name => ({
       name,
-      time: Math.round(time / 1000), // Convert ms to seconds
-      percentage: Math.round((time / (currentActiveTimeOnPage * 1000 || 1)) * 100) // Percentage of total active time
+      time: Math.round(engagement.readSections[name] / 1000), // Convert ms to seconds
+      percentage: Math.round((engagement.readSections[name] / (currentActiveTimeOnPage * 1000 || 1)) * 100) // Percentage of total active time
     }));
   
   // Format most read section
@@ -554,14 +528,11 @@ export const sendTrackingDataToServer = async (): Promise<{ success: boolean; me
     const data = await response.json();
     
     if (data.success) {
-      console.log('Tracking data sent to server automatically', data);
       return { success: true, message: data.message || 'Data sent successfully' };
     } else {
-      console.error('Error sending tracking data to server', data);
       return { success: false, message: data.message || 'Unknown error' };
     }
   } catch (error) {
-    console.error('Exception when sending tracking data:', error);
     return { 
       success: false, 
       message: error instanceof Error ? error.message : 'Unknown error' 
