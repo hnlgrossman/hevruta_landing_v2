@@ -26,6 +26,7 @@ export async function GET(request: NextRequest) {
     // Find all records with need_update=true
     const records = await db.collection("landing_stats")
       .find({ need_update: true })
+      .limit(2)
       .toArray();
     
     if (records.length === 0) {

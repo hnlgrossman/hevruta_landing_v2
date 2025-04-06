@@ -61,7 +61,7 @@ export default async function ItemPage({
             </div>
             <div className="product__price-tag-container">
               <div className="product__price-tag">
-                <div className="product__price-label">מחיר חברותא:</div>
+                <div className="product__price-label">מחיר חברותא</div>
                 <div className="product__price-current"><span className="product__price-skl">₪</span>{item.price}</div>
                 <div className="product__price-discount">
                   <span className="product__price-savings">
@@ -98,7 +98,7 @@ export default async function ItemPage({
                 className="cta-button cta-button--home"
               >
                 <span className="cta-button__text">
-                  לכל המוצרים
+                  לכל  המוצרים שלנו
                 </span>
               </Link>
             </div>
@@ -146,10 +146,10 @@ export default async function ItemPage({
               </div>
             </div>
             <div className="stats__value stats__value--date">
-              <p className="stats__date">{new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'}).split('/').join('.')}</p>
+              <p className="stats__date">10.04.25</p>
               <span className="stats__timer">
                 <p className="stats__timer-label">שעות לסיום</p>
-                <CountdownTimer endDate={new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)} />
+                <CountdownTimer endDate={new Date('2025-04-11')} />
               </span>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default async function ItemPage({
               </div>
               <div className="feature__text">פריסה לתשלומים</div>
             </div>
-            <div className="feature">
+            {/* <div className="feature">
               <div className="feature__icon-container">
                 <img
                   src="/images/globle/energi_rate.png"
@@ -210,7 +210,7 @@ export default async function ItemPage({
                 />
               </div>
               <div className="feature__text">חסכוני בדירוג אנרגטי A</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

@@ -5,7 +5,7 @@ import { Item } from '@/utils/items';
 
 
 export default function ProductDetails({ item: {description, modelNumber, detailed_list} }: { item: Item }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   return (
     <div className="product__details">

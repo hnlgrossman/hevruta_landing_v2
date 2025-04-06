@@ -73,8 +73,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                   />
                 </div>
                 <a href={whatsappCtaLink} className="cta-button blue-button big-button">
-                  הצטרפו עכשיו לקבוצת הקנייה הבאה!
-                </a>
+                תלחצו ותהיו הקונים החכמים בישראל                </a>
               </div>
             </div>
           </div>
@@ -117,7 +116,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                 שלה והיא
               </p>
               <p className="paragraph paragraph__highlight paragraph-xbig paragraph-bold">
-                קבוצות הייבריידיות
+                קבוצות היברידיות
               </p>
               <p className="paragraph">
                 הקבוצות ההיברדיות של חברותא הן קבוצות מיוחדות שמאפשרות לנו לאחד
@@ -166,8 +165,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                   />
                 </div>
                 <a href={whatsappCtaLink} className="cta-button green-button big-button pulse-animation">
-                  לחסכון משמעותי - צרו קשר עכשיו!
-                </a>
+                לחץ כאן עכשיו וקבל את הדיל הכי טוב בשוק                </a>
               </div>
             </div>
           </div>
@@ -428,7 +426,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
               <h3 className="paragraph paragraph-big paragraph-bold paragraph__highlight">
                 ועוד לא הכנסנו את
                 <br />
-                ההנחות בבית...
+                הלחצים בבית...
               </h3>
               <div className="guarantees__questions">
                 <p className="paragraph paragraph-center paragraph-nomargin ">
@@ -457,7 +455,7 @@ export default async function HevrutaInfoSections({ page_track_key = "דף מו�
                 מה קורה שם
               </p>
               <p className="paragraph paragraph-center paragraph-big">
-                וסיוט הלחץ הזה גורם לנו לחשוב
+                וסיר הלחץ הזה גורם לנו לחשוב
               </p>
               <div className="guarantees__question-block">
                 <p className="paragraph paragraph-center paragraph-mbig paragraph__highlight-green">

@@ -147,11 +147,6 @@
   }
   
   &__price-tag {
-    background-color: $accent-color;
-    background-image: url('/images/globle/btn_bg.png');
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
     color: $primary-color;
     padding: $spacing-sm $spacing-md;
     border-radius: $spacing-sm;
@@ -162,6 +157,21 @@
     flex-direction: column;
     gap: $spacing-sm;
     position: relative;
+    background-color: $accent-color;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/globle/btn_bg.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      top: 0;
+      inset-inline: 0;
+      height: 30%;
+    }
 
     &-container {
       display: flex;
@@ -199,6 +209,9 @@
     font-weight: bold;
     color: #fff;
     line-height: 1;
+    
+    z-index: 1;
+    position: relative;
   }
   
   &__price-current {
