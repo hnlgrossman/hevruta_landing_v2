@@ -146,10 +146,10 @@ export default async function ItemPage({
               </div>
             </div>
             <div className="stats__value stats__value--date">
-              <p className="stats__date">10.04.25</p>
+              <p className="stats__date">22.04.25</p>
               <span className="stats__timer">
                 <p className="stats__timer-label">שעות לסיום</p>
-                <CountdownTimer endDate={new Date('2025-04-11')} />
+                <CountdownTimer endDate={new Date('2025-04-23')} />
               </span>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 const WhatsAppButton: React.FC = () => {
   return (
     <Link 
-      href="https://wa.me/972504428463" 
+      href="https://wa.me/972503876311" 
       target="_blank" 
       rel="noopener noreferrer"
       className="whatsapp-button"

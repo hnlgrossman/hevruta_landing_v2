@@ -22,7 +22,7 @@ export const Footer = () => {
                 </svg>
               </a>
               <a 
-                href="https://wa.me/972504428463" 
+                href="https://wa.me/972503876311" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="footer__social-link whatsapp"
@@ -42,7 +42,7 @@ export const Footer = () => {
                 כל המוצרים שלנו
               </Link>
               <a 
-                href="https://wa.me/972504428463" 
+                href="https://wa.me/972503876311" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer__link"
