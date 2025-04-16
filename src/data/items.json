@@ -6,6 +6,13 @@
     "description": "מדיח כלים רחב Bosch, 12 מערכות כלים, דירוג E",
     "modelNumber": "SMS2ITW33E",
     "productImageUrl": "/images/items/SMS2ITW33E.png",
+    "additionalImages": [
+      "/images/items/SMS2ITW33E/23590219_SMS2ITW33E_PGA1_def.webp",
+      "/images/items/SMS2ITW33E/24595750_SMS2ITW33E_PGA12_def.webp",
+      "/images/items/SMS2ITW33E/20552681_AP02BO_FS_WEI_P_PGA2_def.webp",
+      "/images/items/SMS2ITW33E/19816286_LR37A_2_14_PGA5_def.webp",
+      "/images/items/SMS2ITW33E/20747749_dispenser_SM_PGA9_def.webp"
+    ],
     "brandImageUrl": "/images/globle/item_brand.png",
     "price": 2261,
     "marketPrice": 2900,
@@ -13,6 +20,7 @@
     "shortTitle": "מדיח כלים Bosch רחב ",
     "detailed_list": [
       "מדיח כלים רחב של BOSCH עם צג דיגיטלי",
+      "קיבולת - 12 מערכות כלים",
       "כולל 5 תכניות: אוטומטית 45-65 מעלות, חסכונית 50 מעלות, תכנית בשעה אחת בלבד 65 מעלות, סירים 70 מעלות ותכנית מעודפת",
       "קיבולת 12 מערכות כלים, צבע לבן, דירוג אנרגטי E",
       "מידות: גובה 84.5 ס\"מ, רוחב 60 ס\"מ, עומק 60 ס\"מ"
@@ -25,6 +33,13 @@
     "description": "מייבש כביסה Bosch 8 ק\"ג, דירוג אנרגיה A++",
     "modelNumber": "WTH85V18II",
     "productImageUrl": "/images/items/WTH85V18II.jpg",
+    "additionalImages": [
+      "/images/items/WTH85V18II/20219391_WTH85V18II_PGA1_def.webp",
+      "/images/items/WTH85V18II/23591066_WTH85V18II_PGA12_def.webp",
+      "/images/items/WTH85V18II/20895676_WTH85V18II_PGA4_def.webp",
+      "/images/items/WTH85V18II/25176652_Filter-Out_D_white_PGA6_def.webp",
+      "/images/items/WTH85V18II/MCZ_01089505_678678_WT43H000_it-IT.webp"
+    ],
     "brandImageUrl": "/images/globle/item_brand.png",
     "price": 2880,
     "marketPrice": 3600,
@@ -45,6 +60,12 @@
     "description": "תנור בנוי Bosch פירוליטי, נפח 71 ליטר",
     "modelNumber": "HRA574BB0",
     "productImageUrl": "/images/items/HRA574BB0.webp",
+    "additionalImages": [
+      "/images/items/HRA574BB0/18210847_HRA574BB0_PGA1_def.webp",
+      "/images/items/HRA574BB0/18972260_HRA574BB0_PGA2_def.webp",
+      "/images/items/HRA574BB0/20271876_CB734G1B1_PGA6_def.webp",
+      "/images/items/HRA574BB0/MCZ_01972086_1375560_B1ACE0AN0R_hu-HU.webp"
+    ],
     "brandImageUrl": "/images/globle/item_brand.png",
     "price": 2550,
     "marketPrice": 3000,
@@ -53,6 +74,8 @@
     "detailed_list": [
       "תנור בנוי פירוליטי Bosch בצבע שחור עם פונקציית אידוי",
       "נפח גדול 71 ליטר, ניקוי עצמי פירוליטי לשריפת שומנים ב-480 מעלות",
+      "כיוון פתיחת דלת: פתיחה רגילה (מטה)",
+      "דירוג אנרגטי: A",
       "כולל פונקציית חימום מהיר, Convection 3D לחלוקת חום אופטימלית ב-3 רמות במקביל, ו-AutoPilot עם 30 תוכניות אוטומטיות",
       "בעל צג LCD עם תאורה אחורית לבנה, ידיות נשלפות, אמייל GranitEmail, שעון אלקטרוני, בקרת חימום, תאורת הלוגן ומפוח קירור",
       "מידות: רוחב 59.6 ס\"מ, גובה 59.5 ס\"מ, עומק 54.8 ס\"מ"
@@ -65,6 +88,11 @@
     "description": "מכונת כביסה Bosch 10 ק\"ג, 1400 סל\"ד, סדרה 6",
     "modelNumber": "WGG254Z6IT",
     "productImageUrl": "/images/items/WGG254Z6IT.webp",
+    "additionalImages": [
+      "/images/items/WGG254Z6IT/12859291_12839988_WGA142XVTR_it-IT.webp",
+      "/images/items/WGG254Z6IT/15968934_VARIO-DRUM-teasers-1200x900-PX-LAVADORA-Y-SECADORA.jpg",
+      "/images/items/WGG254Z6IT/17142439_Energy_Class_A_SoMe_image-1920x1920px_webspecial.jpg"
+    ],
     "brandImageUrl": "/images/globle/item_brand.png",
     "price": 3099,
     "marketPrice": 3990,
@@ -72,6 +100,10 @@
     "shortTitle": "מכונת כביסה Bosch 10 ק\"ג טכנולוגיה מתקדמת ",
     "detailed_list": [
       "מכונת כביסה Bosch עם טכנולוגיות מתקדמות לביצועים מעולים",
+      "קיבולת: 10 ק\"ג",
+      "מהירות סחיטה: 1400 סל\"ד",
+      "יכולת שקילה אוטומטית",
+      "תוכניות מהירות: 15 דק' ו30 דק'",
       "כוללת מנוע EcoSilence Drive שקט ועמיד, תוכנית Iron Assist המפחיתה קמטים עד 50%, וטכנולוגיית ActiveWater Plus לחיסכון במים",
       "עם SpeedPerfect ניתן לקצר את זמן הכביסה עד 65% ללא פגיעה בתוצאות",
       "תכונת Start/Pause מאפשרת הוספת פריטים במהלך הכביסה",

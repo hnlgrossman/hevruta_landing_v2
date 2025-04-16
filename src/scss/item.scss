@@ -77,6 +77,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  gap: 16px;
   
   &__image-container {
     width: 100%;
@@ -144,6 +145,49 @@
     @include desktop {
       max-height: 50vh;
     }
+  }
+  
+  &__gallery {
+    display: flex;
+    gap: $spacing-sm;
+    margin: $spacing-md 0;
+    overflow-x: auto;
+    padding: $spacing-sm 0;
+    scrollbar-width: thin;
+    scrollbar-color: $accent-color transparent;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $accent-color;
+      border-radius: 3px;
+    }
+  }
+
+  &__gallery-item {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: $spacing-xs;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   &__price-tag {
@@ -778,5 +822,73 @@
     &__title {
       font-size: 2rem;
     }
+  }
+}
+
+// Product Slider
+.product-slider {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+
+  &__swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: $spacing-sm;
+
+    @include tablet {
+      height: 400px;
+    }
+
+    @include desktop {
+      height: 500px;
+    }
+  }
+
+  &__image {
+    object-fit: contain;
+  }
+
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    color: $accent-color;
+    background: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: none;
+
+    @include tablet {
+      display: flex;
+    }
+
+    &::after {
+      font-size: 20px;
+    }
+  }
+
+  :global(.swiper-pagination-bullet) {
+    background: $accent-color;
+    opacity: 0.5;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
   }
 }

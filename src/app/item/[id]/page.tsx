@@ -5,6 +5,7 @@ import ProductDetails from '@/components/ProductDetails';
 import { getWhatsappCtaLink } from '@/utils/main';
 import HevrutaInfoSections from '@/components/HevrutaInfoSections';
 import Link from 'next/link';
+import ProductSlider from '@/components/ProductSlider';
 
 export function generateStaticParams() {
   const items = getAllItems();
@@ -53,10 +54,10 @@ export default async function ItemPage({
                   className="product__brand-logo"
                 />
               </div>
-              <img
-                src={item.productImageUrl}
-                alt="מכונת כביסה LG"
-                className="product__image"
+              <ProductSlider
+                mainImage={item.productImageUrl}
+                additionalImages={item.additionalImages || []}
+                productName={item.name}
               />
             </div>
             <div className="product__price-tag-container">

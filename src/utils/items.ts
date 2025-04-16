@@ -7,6 +7,7 @@ export interface Item {
   description: string;
   modelNumber: string;
   productImageUrl: string;
+  additionalImages?: string[];
   brandImageUrl: string;
   price: number;
   marketPrice: number;
